@@ -1,18 +1,20 @@
 import {StyleSheet, SafeAreaView, Image, Pressable} from 'react-native';
 import React, {useCallback} from 'react';
-import {apiServer} from '../utils/MetaDataetaData';
+
 import {RESTAPIBuilder} from '../utils/RestapiBuilder';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useFocusEffect} from '@react-navigation/native';
-import {
-  GoogleSignin,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
+// import {
+//   GoogleSignin,
+//   statusCodes,
+// } from '@react-native-google-signin/google-signin';
+
 import {
   GOOGLE_WEB_CLIENT_ID,
   GOOGLE_WEB_CLIENT_SECRET,
   GOOGLE_REDIRECT_URI,
 } from '../utils/GoogleConfig';
+import { apiServer } from '../utils/MetaData';
 
 export default function Login(navigation) {
   useFocusEffect(
@@ -46,20 +48,20 @@ export default function Login(navigation) {
   };
   
   const signInWithGoogle = async () => {
-    GoogleSignin.configure({
-      webClientId: GOOGLE_WEB_CLIENT_ID,
-      offlineAccess: true,
-    });
-    await GoogleSignin.hasPlayServices();
-    const userInfo = await GoogleSignin.signIn().catch(error => {
-      console.log(error);
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log('Login Cancel : ', error.message);
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.log(`Login Fail(code:${error.code})`, error.message);
-      }
-      return;
-    });
+    // GoogleSignin.configure({
+    //   webClientId: GOOGLE_WEB_CLIENT_ID,
+    //   offlineAccess: true,
+    // });
+    // await GoogleSignin.hasPlayServices();
+    // const userInfo = await GoogleSignin.signIn().catch(error => {
+    //   console.log(error);
+    //   if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+    //     console.log('Login Cancel : ', error.message);
+    //   } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+    //     console.log(`Login Fail(code:${error.code})`, error.message);
+    //   }
+    //   return;
+    // });
     if (!userInfo) {
       return;
     }

@@ -1,12 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+// import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { ContentRoutes } from './routes';
 const Tab = createBottomTabNavigator();
 
-const getTabBarIcon = ({ focused, color, size, name }) => {
-  const iconName = focused ? name : `${name}-outline`;
-  return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
-};
+// const getTabBarIcon = ({ focused, color, size, name }) => {
+//   const iconName = focused ? name : `${name}-outline`;
+//   return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
+// };
 
 const ContentTab = () => {
   return (
