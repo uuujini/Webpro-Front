@@ -1,13 +1,8 @@
 import {StyleSheet, SafeAreaView, Image, Pressable} from 'react-native';
 import React, {useCallback} from 'react';
-
 import {RESTAPIBuilder} from '../utils/RestapiBuilder';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useFocusEffect} from '@react-navigation/native';
-// import {
-//   GoogleSignin,
-//   statusCodes,
-// } from '@react-native-google-signin/google-signin';
 
 import {
   GOOGLE_WEB_CLIENT_ID,
