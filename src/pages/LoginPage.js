@@ -1,6 +1,6 @@
 import {StyleSheet, SafeAreaView, Image, Pressable} from 'react-native';
 import React, {useCallback} from 'react';
-import {apiServer} from '../utils/metaData';
+import {apiServer} from '../utils/MetaDataetaData';
 import {RESTAPIBuilder} from '../utils/RestapiBuilder';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useFocusEffect} from '@react-navigation/native';
@@ -12,7 +12,7 @@ import {
   GOOGLE_WEB_CLIENT_ID,
   GOOGLE_WEB_CLIENT_SECRET,
   GOOGLE_REDIRECT_URI,
-} from '../utils/googleConfig';
+} from '../utils/GoogleConfig';
 
 export default function Login(navigation) {
   useFocusEffect(
