@@ -1,31 +1,17 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { ContentRoutes } from './routes';
-const Tab = createBottomTabNavigator();
+import HomePage from '../pages/HomePage';
 
-// const getTabBarIcon = ({ focused, color, size, name }) => {
-//   const iconName = focused ? name : `${name}-outline`;
-//   return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
-// };
+const Tab = createBottomTabNavigator();
 
 const ContentTab = () => {
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        // tabBarActiveTintColor: PRIMARY.DARK,
-        // tabBarInactiveTintColor: GRAY.DARK,
-      }}
-      initialRouteName={ContentRoutes.HomePage.name}
-    >
-      <Tab.Screen
-        name={ContentRoutes.HomePage.name}
-        // component={CreateWordScreen}
-        // options={{
-        //   tabBarIcon: (props) => getTabBarIcon({ ...props, name: 'book' }),
-        //   tabBarLabel: ContentRoutes.CreateWord.label,
-        //   unmountOnBlur: true,}}
-      />
+      }}  
+      initialRouteName={ContentRoutes.HomePage.name}>
+      <Tab.Screen name={ContentRoutes.HomePage.name} component={HomePage}/>
     </Tab.Navigator>
   );
 };
