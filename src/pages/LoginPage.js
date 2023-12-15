@@ -1,6 +1,6 @@
 import {StyleSheet, SafeAreaView, Image, Pressable, Button} from 'react-native';
 import React from 'react';
-// import { ContentRoutes } from '../naviagtions/routes';
+import { ContentRoutes } from '../naviagtions/routes';
 import { useNavigation } from '@react-navigation/native';
 import { LoginGoogle } from '../component/axios/LoginRequest';
 
@@ -11,7 +11,7 @@ export default function Login() {
     // await AsyncStorage.setItem('userData', JSON.stringify(tokenData));
     console.log("test")
     LoginGoogle().then((res)=>{console.log(res.data.message);});
-    // navigation.replace(ContentRoutes.Main.name);
+    navigation.replace(ContentRoutes.Main.name);
   };
 
   return (
