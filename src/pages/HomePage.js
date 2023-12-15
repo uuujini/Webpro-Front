@@ -1,10 +1,11 @@
 import React from 'react';
+import { Text } from 'react-native';
 
 const HomePage = () => {
-
   return (
-    <View>
-    </View>
+    <Text>
+      HomePage
+    </Text>
   );
 };
 

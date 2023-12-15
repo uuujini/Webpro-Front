@@ -1,23 +1,26 @@
 import {StyleSheet, SafeAreaView, Image, Pressable} from 'react-native';
 import React, {useCallback} from 'react';
-import {RESTAPIBuilder} from '../utils/RestapiBuilder';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useFocusEffect} from '@react-navigation/native';
-
-import {
-  GOOGLE_WEB_CLIENT_ID,
-  GOOGLE_WEB_CLIENT_SECRET,
-  GOOGLE_REDIRECT_URI,
-} from '../utils/GoogleConfig';
+// import {
+//   GOOGLE_WEB_CLIENT_ID,
+//   GOOGLE_WEB_CLIENT_SECRET,
+//   GOOGLE_REDIRECT_URI,
+// } from '../utils/GoogleConfig';
 import { apiServer } from '../utils/MetaData';
+import { ContentRoutes } from '../naviagtions/routes';
+import { useNavigation } from '@react-navigation/native';
 
-export default function Login(navigation) {
+
+export default function Login() {
+  const navigation = useNavigation();
+
   useFocusEffect(
     useCallback(() => {
       checkIsLogin();
-      GoogleSignin.configure({
-        webClientId: GOOGLE_WEB_CLIENT_ID,
-      });
+      // GoogleSignin.configure({
+      //   webClientId: GOOGLE_WEB_CLIENT_ID,
+      // });
     }, []),
   );
   const checkIsLogin = async () => {
@@ -27,14 +30,14 @@ export default function Login(navigation) {
     }
 
     const url = `${apiServer}/myid`;
-    const result = await new RESTAPIBuilder(url, 'GET')
-      .setNeedToken(true)
-      .build()
-      .run()
-      .catch(err => {
-        console.log(err);
-        AsyncStorage.removeItem('userData');
-      });
+    // const result = await new RESTAPIBuilder(url, 'GET')
+    //   .setNeedToken(true)
+    //   .build()
+    //   .run()
+    //   .catch(err => {
+    //     console.log(err);
+    //     AsyncStorage.removeItem('userData');
+    //   });
 
     if (result) {
       console.log('verify Result : ', result);
@@ -57,35 +60,35 @@ export default function Login(navigation) {
     //   }
     //   return;
     // });
-    if (!userInfo) {
-      return;
-    }
-    const result = await fetch('https://oauth2.googleapis.com/token', {
-      method: 'POST',
-      body: JSON.stringify({
-        code: userInfo.serverAuthCode,
-        client_id: GOOGLE_WEB_CLIENT_ID,
-        client_secret: GOOGLE_WEB_CLIENT_SECRET,
-        grant_type: 'authorization_code',
-        redirect_uri: GOOGLE_REDIRECT_URI,
-      }),
-    }).then(res => {
-      return res.json();
-    });
-    const url = `${apiServer}/login/oauth2/code/google?token=${result?.access_token}`;
-    const {data} = await new RESTAPIBuilder(url, 'POST')
-      .build()
-      .run()
-      .catch(err => {
-        console.log(err);
-      });
-    console.log('Login Success');
-    const tokenData = {
-      userId: data.userId,
-      accessToken: data.accessToken,
-    };
-    await AsyncStorage.setItem('userData', JSON.stringify(tokenData));
-    await navigation.navigate('BottomTab');
+    // if (!userInfo) {
+    //   return;
+    // }
+    // const result = await fetch('https://oauth2.googleapis.com/token', {
+    //   method: 'POST',
+    //   body: JSON.stringify({
+    //     code: userInfo.serverAuthCode,
+    //     client_id: GOOGLE_WEB_CLIENT_ID,
+    //     client_secret: GOOGLE_WEB_CLIENT_SECRET,
+    //     grant_type: 'authorization_code',
+    //     redirect_uri: GOOGLE_REDIRECT_URI,
+    //   }),
+    // }).then(res => {
+    //   return res.json();
+    // });
+    // const url = `${apiServer}/login/oauth2/code/google?token=${result?.access_token}`;
+    // const {data} = await new RESTAPIBuilder(url, 'POST')
+    //   .build()
+    //   .run()
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+    // console.log('Login Success');
+    // const tokenData = {
+    //   userId: data.userId,
+    //   accessToken: data.accessToken,
+    // };
+    // await AsyncStorage.setItem('userData', JSON.stringify(tokenData));
+    navigation.replace(ContentRoutes.Main.name);
   };
 
   
