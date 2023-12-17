@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   header: {
     height: 200,
     width: "100%",
-    top: -10,
+    top: -15,
     alignItems: "center",
     justifyContent: "center",
   },
